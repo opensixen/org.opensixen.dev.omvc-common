@@ -1,0 +1,12 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: org.opensixen.dev.omvc-common
+Bundle-SymbolicName: org.opensixen.dev.omvc-common
+Bundle-Version: 0.1.0
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Export-Package: javax.persistence,
+ javax.persistence.spi,
+ org.opensixen.dev.omvc.interfaces,
+ org.opensixen.dev.omvc.model
+Bundle-ClassPath: lib/ejb3-persistence.jar,
+ .
