@@ -83,5 +83,12 @@ public class Revision implements IPO{
 
 	public void setScripts(ArrayList<Script> scripts) {
 		this.scripts = scripts;
-	}		
+	}	
+	
+	public void addScript(Script script)	{
+		if (scripts == null)	{
+			scripts = new ArrayList<Script>();
+		}
+		scripts.add(script);
+	}
 }

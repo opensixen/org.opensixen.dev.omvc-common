@@ -1,6 +1,7 @@
 package org.opensixen.dev.omvc.model;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 
@@ -24,13 +25,22 @@ import org.opensixen.dev.omvc.interfaces.IPO;
 @TableGenerator(name = "Script_SEQ", pkColumnValue = "script_ID", table = "ID_SEQUENCE", pkColumnName = "pkcolname", valueColumnName = "value",  initialValue = 1000, allocationSize = 1)
 @Table(name="script", uniqueConstraints = {@UniqueConstraint(columnNames="script_ID")})
 public class Script implements IPO{
-	
+
+	/** SQL Script type	*/
+	public static final String TYPE_SQL = "sql";
+	/** Engine Postgres for SQL Type	*/
 	public static final String ENGINE_POSTGRESQL = "postgres";
+	/** Engine Oracle for SQL Type	*/
 	public static final String ENGINE_ORACLE = "oracle";
 
+	
+	
 	private int script_ID;
 	private Revision revision;
 	private String engine;
+	
+	private String type;
+	
 	private String script;
 	
 	public Script() {
@@ -57,6 +67,14 @@ public class Script implements IPO{
 
 	public void setRevision(Revision revision) {
 		this.revision = revision;
+	}
+	
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
 	}
 
 	public String getEngine() {
@@ -94,6 +112,26 @@ public class Script implements IPO{
 		} catch (IOException e) {
 			return false;
 		}
+	}
+	
+	public static Script getScript(String engine, String fileName)		{
+		if (fileName == null)	{
+			return null;
+		}
+		File f = new File(fileName);
+		if (!f.exists())	{
+			return null;
+		}
+		
+		Script script = new Script();
+		
+		if (ENGINE_ORACLE.equals(engine) || ENGINE_POSTGRESQL.equals(engine))	{
+			script.setType(TYPE_SQL);
+		}
+		script.setEngine(engine);
+		script.loadFile(fileName);
+		
+		return script;
 	}
 
 }
