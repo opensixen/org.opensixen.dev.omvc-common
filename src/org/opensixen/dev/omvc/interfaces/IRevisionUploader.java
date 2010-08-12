@@ -10,7 +10,7 @@ public interface IRevisionUploader  extends IRienaService {
 	
 	public static final String path="/RevisionUploaderWS";
 	
-	public boolean uploadRevison(Revision revision);
+	public int uploadRevison(Revision revision);
 	
 	public List<Project> getProjects();
 	
