@@ -1,6 +1,8 @@
 package org.opensixen.dev.omvc.model;
 
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -30,7 +32,9 @@ public class Revision implements IPO{
 	
 	private Developer developer;
 
-	private ArrayList<Script> scripts;
+	private Date created;
+	
+	private List<Script> scripts;
 		
 	public Revision() {
 		super();
@@ -75,13 +79,26 @@ public class Revision implements IPO{
 		this.developer = developer;
 	}
 	
-	
+	/**
+	 * @return the created
+	 */
+	public Date getCreated() {
+		return created;
+	}
+
+	/**
+	 * @param created the created to set
+	 */
+	public void setCreated(Date created) {
+		this.created = created;
+	}
+
 	@Transient
-	public ArrayList<Script> getScripts() {
+	public List<Script> getScripts() {
 		return scripts;
 	}
 
-	public void setScripts(ArrayList<Script> scripts) {
+	public void setScripts(List<Script> scripts) {
 		this.scripts = scripts;
 	}	
 	
