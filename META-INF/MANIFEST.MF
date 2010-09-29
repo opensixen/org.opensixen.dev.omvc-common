@@ -7,6 +7,8 @@ Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Export-Package: javax.persistence,
  javax.persistence.spi,
  org.opensixen.dev.omvc.interfaces,
+ org.opensixen.dev.omvc.jaas,
  org.opensixen.dev.omvc.model
 Bundle-ClassPath: lib/ejb3-persistence.jar,
  .
+Require-Bundle: org.opensixen.riena;bundle-version="1.0.0"
