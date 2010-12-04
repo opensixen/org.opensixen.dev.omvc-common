@@ -28,6 +28,10 @@ public class Script implements IPO{
 
 	/** SQL Script type	*/
 	public static final String TYPE_SQL = "sql";
+	
+	/** OSX Formated Script	*/
+	public static final String TYPE_OSX = "osx";
+			
 	/** Engine Postgres for SQL Type	*/
 	public static final String ENGINE_POSTGRESQL = "postgres";
 	/** Engine Oracle for SQL Type	*/
@@ -42,6 +46,8 @@ public class Script implements IPO{
 	private String type;
 	
 	private String script;
+	
+	private String name;
 	
 	public Script() {
 		super();
@@ -94,6 +100,20 @@ public class Script implements IPO{
 		this.script = script;
 	}
 	
+	/**
+	 * @return the name
+	 */
+	public String getName() {
+		return name;
+	}
+
+	/**
+	 * @param name the name to set
+	 */
+	public void setName(String name) {
+		this.name = name;
+	}
+
 	@Transient
 	public boolean loadFile(String filePath) {
 		try {
@@ -113,8 +133,14 @@ public class Script implements IPO{
 			return false;
 		}
 	}
-	
-	public static Script getScript(String engine, String fileName)		{
+	/**
+	 * Lee el script generado desde el fichero y lo 
+	 * convierte en un objeto Script de tipo osx
+	 * @param engine
+	 * @param fileName
+	 * @return
+	 */
+	public static Script getScript(String engine, String type, String fileName)		{
 		if (fileName == null)	{
 			return null;
 		}
@@ -124,10 +150,8 @@ public class Script implements IPO{
 		}
 		
 		Script script = new Script();
-		
-		if (ENGINE_ORACLE.equals(engine) || ENGINE_POSTGRESQL.equals(engine))	{
-			script.setType(TYPE_SQL);
-		}
+		script.setName(f.getName());
+		script.setType(type);
 		script.setEngine(engine);
 		script.loadFile(fileName);
 		
